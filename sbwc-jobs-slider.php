@@ -179,7 +179,6 @@ function sbwc_jobs_slider_shortcode($atts)
             $valid_jobs[$job['id']] = [
                 'title'       => strip_tags($job['name']),
                 'description' => $clean_text,
-                // 'url'         => $job['resource_url'],
                 'url'         => $job['application_form_url'],
             ];
 
@@ -188,7 +187,6 @@ function sbwc_jobs_slider_shortcode($atts)
             $valid_jobs[$job['id']] = [
                 'title'       => strip_tags($job['name']),
                 'description' => $placeholder_text,
-                // 'url'         => $job['resource_url'],
                 'url'         => $job['application_form_url'],
             ];
         endif;
@@ -216,8 +214,6 @@ function sbwc_jobs_slider_shortcode($atts)
     } elseif (strpos($userAgent, 'Tablet') !== false) {
         $slidesPerPage = 3; // For tablet
     }
-
-
 
 ?>
 
