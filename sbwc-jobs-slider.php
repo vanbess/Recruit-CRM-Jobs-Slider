@@ -17,7 +17,7 @@ function sbwc_jobs_slider_plugin_init()
     add_action('admin_menu', 'sbwc_jobs_slider_add_admin_page');
 
     // Register the shortcode
-    add_shortcode('jobs_carousel', 'sbwc_jobs_slider_shortcode');
+    add_shortcode('recruitcrm-jobs', 'sbwc_jobs_slider_shortcode');
 }
 
 add_action('init', 'sbwc_jobs_slider_plugin_init');
@@ -26,8 +26,8 @@ add_action('init', 'sbwc_jobs_slider_plugin_init');
 function sbwc_jobs_slider_add_admin_page()
 {
     add_menu_page(
-        'SBWC Jobs Slider',
-        'SBWC Jobs Slider',
+        'Recruit CRM Jobs Slider',
+        'Recruit CRM Jobs Slider',
         'manage_options',
         'sbwc-jobs-slider',
         'sbwc_jobs_slider_admin_page_callback',
