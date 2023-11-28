@@ -173,23 +173,18 @@ function sbwc_jobs_slider_shortcode($atts)
 
         // has description text
         if (strlen(strip_tags($job['job_description_text'])) > 50) :
-
             $clean_text = preg_replace('/<[^>]*>/', '', $job['job_description_text']);
-
-            $valid_jobs[$job['id']] = [
-                'title'       => strip_tags($job['name']),
-                'description' => $clean_text,
-                'url'         => $job['application_form_url'],
-            ];
-
+            $description = strlen($clean_text) > 200 ? substr($clean_text, 0, 200) . '...' : $clean_text;
         // no description text, use placeholder text
         else :
-            $valid_jobs[$job['id']] = [
-                'title'       => strip_tags($job['name']),
-                'description' => $placeholder_text,
-                'url'         => $job['application_form_url'],
-            ];
+            $description = substr($placeholder_text, 0, 200) . '...';
         endif;
+
+        $valid_jobs[$job['id']] = [
+            'title'       => strip_tags($job['name']),
+            'description' => $description,
+            'url'         => $job['application_form_url'],
+        ];
 
     endforeach;
 
@@ -204,8 +199,6 @@ function sbwc_jobs_slider_shortcode($atts)
     // print_r($valid_jobs);
     // echo '</pre>';
 
-    // Add the Owl Carousel initialization code after the existing code
-
     // Determine the number of job slides per slide page based on the device
     $slidesPerPage = 4; // Default for desktop
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
@@ -215,384 +208,483 @@ function sbwc_jobs_slider_shortcode($atts)
         $slidesPerPage = 3; // For tablet
     }
 
+    // Setup job description text
+    // If description text is less than 300 chars, text remains as is
+    // If description text is more than 300 chars, text is truncated to 300 chars and '...' is appended
+    // If description text is less than 50 chars, placeholder text is used
+
+    // foreach ($data as $job) :
+
+    //     // has description text
+    //     if (strlen(strip_tags($job['job_description_text'])) > 50) :
+    //         $clean_text = preg_replace('/<[^>]*>/', '', $job['job_description_text']);
+    //         $description = strlen($clean_text) > 300 ? substr($clean_text, 0, 300) . '...' : $clean_text;
+    //     // no description text, use placeholder text
+    //     else :
+    //         $description = $placeholder_text;
+    //     endif;
+
+    //     $valid_jobs[$job['id']] = [
+    //         'title'       => strip_tags($job['name']),
+    //         'description' => $description,
+    //         'url'         => $job['application_form_url'],
+    //     ];
+
+    // endforeach;
+
 ?>
 
     <div class="owl-carousel">
         <?php foreach ($valid_jobs as $job) : ?>
             <div class="hexagon">
                 <div class="hexagon-content">
-                    <h2 class="title"><?php echo $job['title']; ?></h2>
-                    <p class="description"><?php echo strlen($job['description'] < 200) ? substr($job['description'], 0, 200) . '...' : substr($placeholder_text, 0, 200) . '...'; ?></p>
+                    <img class="hexagon-slide-img-hover" src="<?php echo plugin_dir_url(__FILE__) . 'img/slide.hover.png' ?>" alt="hexagon slide hover image">
+                    <img class="hexagon-slide-img" src="<?php echo plugin_dir_url(__FILE__) . 'img/slide.normal.png' ?>" alt="hexagon slide image">
+                    <h2 class="title"><?php echo substr($job['title'], 0, 12); ?>...</h2>
+                    <p class="description"><?php echo $job['description']  ?></p>
                     <a type="button" class="url" href="<?php echo $job['url']; ?>" title="click to view" target="_blank" rel="nofollow">
                         Read more
+                        <img class="hexagon-rm-image" src="<?php echo plugin_dir_url(__FILE__) . 'img/readmore.arrow.png' ?>" alt="hexagon read more image">
                     </a>
-                    <span class="arrow-right"></span>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <style>
+    <style id="jobs-slider-css">
+        .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent,
+        .elementor-element.elementor-element-bf1d245.e-con-full.e-flex.e-con.e-parent {
+            --padding-inline-start: 88px;
+            --padding-inline-end: 88px;
+            height: 1154px;
+        }
+
+        .elementor-element.elementor-element-4c8da6b.e-con-full.e-flex.e-con.e-parent {
+            --padding-inline-start: 88px;
+            --padding-inline-end: 88px;
+            height: 969px;
+        }
+
+        .elementor-element.elementor-element-db09f5b.e-con-full.e-flex.e-con.e-child {
+            --margin-block-start: 0;
+        }
+
+        .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>h2 {
+            font-size: 46px !important;
+            margin-bottom: 45px;
+        }
+
+        .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>p {
+            width: 846px;
+            margin: 0 auto 70px;
+        }
+
+        div.elementor-element.elementor-element-855aa6a.elementor-widget.elementor-widget-shortcode>div,
+        .elementor-element.elementor-element-37bb18a.elementor-widget.elementor-widget-shortcode>div,
+        .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode>div {
+            margin: 0;
+        }
+
+        div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p,
+        .elementor-element.elementor-element-fe6fe2c.elementor-widget.elementor-widget-text-editor>div>p {
+            width: 846px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 23.60px;
+            word-wrap: break-word;
+            font-weight: 400;
+            color: #F5F5F5;
+        }
+
+        .elementor-element.elementor-element-fe6fe2c.elementor-widget.elementor-widget-text-editor>div>p {
+            margin-bottom: 82px;
+        }
+
+        .elementor-element.elementor-element-21d09fe.elementor-align-center.elementor-widget.elementor-widget-button {
+            margin-top: -20px;
+            padding-top: 87px;
+        }
+
+        div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>h2,
+        .elementor-element.elementor-element-1af1894.elementor-widget.elementor-widget-text-editor>div>h2 {
+            font-size: 46px !important;
+            color: #FEC7EB;
+            font-weight: 400;
+            line-height: 66.70px;
+            word-wrap: break-word;
+            margin-bottom: 45px;
+        }
+
+        div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div,
+        .elementor-element.elementor-element-1af1894.elementor-widget.elementor-widget-text-editor>div {
+            padding: 0;
+            margin-bottom: 62px;
+        }
+
+        .elementor-element.elementor-element-bf1d245.e-con-full.e-flex.e-con.e-parent {
+            --padding-block-start: 0;
+            --margin-block-start: -80px;
+            z-index: 1;
+        }
+
+        img.attachment-large.size-large.wp-image-1509 {
+            z-index: 2;
+            position: relative;
+        }
+
         /* Owl Carousel container */
-        .owl-carousel {
+        /* .owl-carousel {
             display: flex;
             justify-content: center;
-        }
+        } */
 
         /* Hexagon shape */
         .hexagon {
-            background: transparent;
-            background-image: url(<?php echo plugin_dir_url(__FILE__) . 'img/slide.normal.png' ?>);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            width: 460px;
-            height: 511px;
             position: relative;
-            transition: all 0.3s ease-in-out;
             cursor: pointer;
+            width: 407px;
+            height: calc(407px * 1.116);
         }
 
-        .hexagon:hover {
-            background-image: url('<?php echo plugin_dir_url(__FILE__) . 'img/slide.hover.png' ?>');
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* .arrow-right display as block and use background image readmore.arrow.png */
-        .arrow-right {
-            display: block;
-            background-image: url('<?php echo plugin_dir_url(__FILE__) . 'img/readmore.arrow.png' ?>');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            width: 32px;
-            height: 35px;
+        img.hexagon-slide-img,
+        img.hexagon-slide-img-hover {
+            width: 407px;
+            height: calc(407px * 1.116);
             position: absolute;
-            bottom: 6%;
-            right: 46.5%;
+            top: 0;
+            left: 0;
             transition: all 0.3s ease-in-out;
+        }
+
+        .hexagon:hover img.hexagon-slide-img {
+            opacity: 0;
+        }
+
+        img.hexagon-rm-image {
+            width: 27.74px !important;
+            position: relative;
+            left: calc((210px - 27.74px)/2);
+            top: 16px;
         }
 
         /* Adjust text size and styles as needed */
         .hexagon h2 {
-            font-size: 25px;
-            margin-bottom: 5px;
-            position: absolute;
-            top: 22%;
-            width: 80%;
-            line-height: 1.5;
-            text-align: center;
-            left: 10%;
-            color: #901466;
+            font-size: 32px;
             font-weight: 600;
+            word-wrap: break-word;
+            color: #901466;
+            position: absolute;
+            top: 100px;
+            left: calc((407px - 300px)/2);
+            width: 300px;
+            text-align: center;
+            line-height: 47px;
         }
 
         /* p */
         .hexagon p {
-            font-size: 18px;
-            margin-bottom: 5px;
-            position: absolute;
-            top: 40%;
-            max-width: 80%;
-            left: 10%;
-            line-height: 1.5;
+            font-size: 16px;
+            word-wrap: break-word;
             text-align: center;
-            color: #111;
+            font-weight: 400;
+            position: absolute;
+            color: #25143A;
+            top: 170px;
+            width: 333px;
+            left: calc((407px - 333px)/2);
+            line-height: 23.60px;
         }
 
         /* a */
         .hexagon a {
-            text-decoration: none;
-            color: #ffcc00;
-            display: block;
-            position: absolute;
-            bottom: 17%;
-            width: 80%;
-            left: 10%;
-            text-align: center;
-            color: #111;
+            width: 210px;
             font-size: 20px;
-            font-weight: 500;
+            color: #25143A;
+            font-weight: 400;
+            text-decoration: underline;
+            line-height: 29.50px;
+            word-wrap: break-word;
+            position: absolute;
+            top: 355px;
+            text-align: center;
+            left: calc((407px - 210px)/2);
         }
 
-        .owl-carousel {
-            margin-top: 30px;
-        }
+        /* .owl-carousel .owl-stage-outer {
+            width: 1721px;
+            left: 33px;
+        } */
+
+        /* .owl-carousel .owl-item {
+            left: -33px;
+        } */
 
         .owl-nav {
+            display: block;
+            width: 100%;
             text-align: center;
             position: relative;
-            right: 10px;
-            margin: 60px 0;
+            right: 2.5px;
+            margin-top: 45px;
         }
 
         button.owl-prev {
-            position: relative !important;
-            right: 15px;
-            background-image: url('<?php echo plugin_dir_url(__FILE__) . 'img/nav.normal.left.png' ?>') !important;
-            background-repeat: no-repeat !important;
-            background-size: cover !important;
-            background-position: center !important;
-            width: 40px;
-            height: 43px;
-            transition: all 0.3s ease-in-out;
+            margin-right: 30px;
         }
 
-        button.owl-prev:hover {
-            background-image: url('<?php echo plugin_dir_url(__FILE__) . 'img/nav.hover.left.png' ?>') !important;
-            transition: all 0.3s ease-in-out;
-        }
-
+        button.owl-prev,
         button.owl-next {
-            position: relative !important;
-            left: 15px;
-            background-image: url('<?php echo plugin_dir_url(__FILE__) . 'img/nav.normal.right.png' ?>') !important;
-            background-repeat: no-repeat !important;
-            background-size: cover !important;
-            background-position: center !important;
-            width: 40px;
-            height: 43px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        button.owl-next:hover {
-            background-image: url('<?php echo plugin_dir_url(__FILE__) . 'img/nav.hover.right.png' ?>') !important;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .elementor-element.elementor-element-21d09fe.elementor-align-center.elementor-widget.elementor-widget-button {
             position: relative;
-            right: 8px;
+            width: 39.62px;
+        }
+
+        button.owl-prev img,
+        button.owl-next img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 39.62px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        img.arrow-left:hover,
+        img.arrow-right:hover {
+            opacity: 0;
         }
 
         html {
             overflow-x: hidden;
         }
 
-        /* media max width 1440px */
-        @media (max-width: 1440px) {
-            .hexagon {
-                width: 405px;
-                height: 450px;
-            }
-
-            .hexagon h2 {
-                font-size: 22px;
-            }
-
-            .hexagon p {
-                font-size: 16px;
-            }
-
-            .hexagon a {
-                font-size: 18px;
-            }
-
-            .owl-nav {
-                margin: 40px 0;
-            }
-
-            button.owl-prev {
-                width: 35px;
-                height: 38px;
-            }
-
-            button.owl-next {
-                width: 35px;
-                height: 38px;
+        /* 1600 */
+        @media screen and (max-width: 1600px) {
+            .owl-stage-outer {
+                width: 1286px;
+                left: 68px;
             }
         }
 
-        /* media max width 1366px */
-        @media (max-width: 1366px) {
+        /* 1536 */
+        @media screen and (max-width: 1536px) {
+            .owl-stage-outer {
+                left: 35px;
+            }
+        }
+
+        /* 1440 */
+        @media screen and (max-width: 1440px) {
+            .owl-stage-outer {
+                left: -10px;
+            }
+        }
+
+        /* 1366 */
+        @media screen and (max-width: 1366px) {
+            .owl-stage-outer {
+                left: -47px;
+            }
+        }
+
+        /* 1280 */
+        @media screen and (max-width: 1280px) {
+            .owl-stage-outer {
+                width: 850px;
+                left: 124px;
+            }
+
+            .elementor-element.elementor-element-fe6fe2c.elementor-widget.elementor-widget-text-editor>div>p,
+            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>p {
+                width: 100% !important;
+            }
+
+            .elementor-597 .elementor-element.elementor-element-fe6fe2c>.elementor-widget-container,
+            .elementor-647 .elementor-element.elementor-element-09b12f3>.elementor-widget-container {
+                padding: 0;
+            }
+
+        }
+
+        /* 1024 */
+        @media screen and (max-width: 1024px) {
+            .owl-stage-outer {
+                left: -2px;
+            }
+
+        }
+
+        /* 962 */
+        @media screen and (max-width: 962px) {
+            .owl-stage-outer {
+                left: -32px;
+            }
+
+        }
+
+        /* 810 */
+        @media screen and (max-width: 810px) {
+            .owl-stage-outer {
+                left: 109px;
+                width: 432px;
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p {
+                width: 630px;
+            }
+        }
+
+        /* 800 */
+        @media screen and (max-width: 800px) {
+            .owl-stage-outer {
+                left: 105px;
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p {
+                width: 620px;
+            }
+        }
+
+        /* 768 */
+        @media screen and (max-width: 768px) {
+            .owl-stage-outer {
+                left: 88px;
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p {
+                width: 588px;
+            }
+        }
+
+        /* 414 */
+        @media screen and (max-width: 414px) {
+            .owl-stage-outer {
+                left: -85px;
+            }
+
+            .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
+                left: -12px;
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p,
+            .elementor-element.elementor-element-fe6fe2c.elementor-widget.elementor-widget-text-editor>div>p,
+            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>p {
+                width: 230px;
+                text-align: left !important;
+                line-height: 23.6px !important;
+            }
+
+            .elementor-element.elementor-element-bf1d245.e-con-full.e-flex.e-con.e-parent,
+            .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent,
+            .elementor-element.elementor-element-4c8da6b.e-con-full.e-flex.e-con.e-parent {
+                --padding-inline-start: 15px;
+                --padding-inline-end: 15px;
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>h2,
+            .elementor-element.elementor-element-1af1894.elementor-widget.elementor-widget-text-editor>div>h2,
+            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>h2 {
+                font-size: 32px !important;
+                line-height: 43.5px !important;
+                text-align: left !important;
+
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div,
+            .elementor-element.elementor-element-1af1894.elementor-widget.elementor-widget-text-editor>div {
+                padding: 0;
+                margin-bottom: 36px;
+            }
+        }
+
+        /* 393 */
+        @media screen and (max-width: 393px) {
+
+            .owl-stage-outer,
+            .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
+                left: -69px;
+            }
+
+            .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent {
+                height: 1135px;
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p {
+                width: 328px;
+            }
+
+            .elementor-21 .elementor-element.elementor-element-c6627f7 {
+                --padding-block-start: 83px;
+            }
+
             .hexagon {
-                width: 374px;
-                height: 415px;
+                width: 328px;
+                height: calc(328px * 1.116);
+                left: 84px;
+            }
+
+            img.hexagon-slide-img,
+            img.hexagon-slide-img-hover {
+                width: 328px;
+                height: calc(328px * 1.116);
             }
 
             .hexagon h2 {
-                font-size: 20px;
+                font-size: 26px;
+                top: 84px;
+                left: calc((328px - 300px)/2);
+                line-height: 38.35px;
             }
 
             .hexagon p {
                 font-size: 14px;
+                top: 134px;
+                width: 269px;
+                left: calc((328px - 269px)/2);
+                line-height: 20.65px;
             }
 
             .hexagon a {
-                font-size: 16px;
+                top: 271px;
+                left: calc((328px - 210px)/2);
+            }
+
+            img.hexagon-rm-image {
+                width: 22.35px !important;
+                left: calc((210px - 22.35px)/2);
+                top: 23px;
             }
 
             .owl-nav {
-                margin: 30px 0;
+                margin-top: 95px;
             }
 
-            button.owl-prev {
-                width: 30px;
-                height: 33px;
+            .elementor-element.elementor-element-21d09fe.elementor-align-center.elementor-widget.elementor-widget-button {
+                padding-top: 95px;
             }
 
-            button.owl-next {
-                width: 30px;
-                height: 33px;
+        }
+
+        /* 390 */
+        @media screen and (max-width: 390px) {}
+
+        /* 360 */
+        @media screen and (max-width: 360px) {
+
+            .owl-stage-outer,
+            .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
+                left: -83px;
             }
         }
 
-        /* media max width 1280px */
-        @media (max-width: 1280px) {
-            .hexagon {
-                width: 348px;
-                height: 386px;
+        /* 328 */
+        @media screen and (max-width: 328px) {
+            .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent {
+                --padding-inline-start: 15px;
+                --padding-inline-end: 15px;
             }
 
-            .hexagon h2 {
-                font-size: 18px;
-            }
-
-            .hexagon p {
-                font-size: 12px;
-            }
-
-            .hexagon a {
-                font-size: 14px;
-            }
-
-            .owl-nav {
-                margin: 20px 0;
-            }
-
-            button.owl-prev {
-                width: 25px;
-                height: 28px;
-            }
-
-            button.owl-next {
-                width: 25px;
-                height: 28px;
-            }
-        }
-
-        /* media max width 1024px */
-        @media (max-width: 1024px) {
-            .hexagon {
-                width: 261px;
-                height: 290px;
-            }
-
-            .hexagon h2 {
-                font-size: 16px;
-            }
-
-            .hexagon p {
-                font-size: 10px;
-            }
-
-            .hexagon a {
-                font-size: 12px;
-            }
-
-            .owl-nav {
-                margin: 10px 0;
-            }
-
-            button.owl-prev {
-                width: 21px;
-                height: 23px;
-            }
-
-            button.owl-next {
-                width: 21px;
-                height: 23px;
-            }
-
-            .arrow-right {
-                width: 27px;
-                height: 29px;
-                bottom: 5%;
-                right: 45.5%;
-            }
-
-            .owl-nav {
-                margin: 30px 0;
-            }
-        }
-
-        /* media max width 768px */
-        @media (max-width: 768px) {
-            .hexagon {
-                width: 287px;
-                height: 319px;
-            }
-
-            .hexagon h2 {
-                font-size: 16px;
-            }
-
-            .hexagon p {
-                font-size: 11px;
-            }
-
-            .hexagon a {
-                font-size: 12px;
-            }
-
-            .owl-nav {
-                margin: 10px 0;
-            }
-
-            button.owl-prev {
-                width: 17px;
-                height: 19px;
-            }
-
-            button.owl-next {
-                width: 17px;
-                height: 19px;
-            }
-
-            .arrow-right {
-                width: 22px;
-                height: 24px;
-                bottom: 5%;
-                right: 45.5%;
-            }
-
-            .owl-nav {
-                margin: 20px 0;
-                right: 5px;
-            }
-        }
-
-        /* media max width 450px */
-        @media (max-width: 450px) {
-            .hexagon {
-                width: 284px;
-                height: 316px;
-            }
-
-            .owl-nav {
-                margin: 20px 0;
-            }
-
-            button.owl-prev {
-                width: 25px;
-                height: 27px;
-            }
-
-            button.owl-next {
-                width: 25px;
-                height: 27px;
-            }
-
-            .arrow-right {
-                width: 19px;
-                height: 21px;
-                bottom: 5%;
-                right: 46.5%;
-            }
-
-            .owl-nav {
-                margin: 20px 0;
-                right: 5px;
+            .owl-stage-outer,
+            .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
+                left: -100px;
             }
         }
     </style>
@@ -603,21 +695,20 @@ function sbwc_jobs_slider_shortcode($atts)
                 items: <?php echo $slidesPerPage; ?>,
                 loop: true,
                 center: false,
-                margin: 10,
+                margin: 30,
+                // stagePadding: 50,
                 nav: true,
                 navText: ["", ""],
                 dots: false,
+                autoWidth: true,
                 responsive: {
                     0: {
                         items: 1
                     },
-                    450: {
-                        items: 1
-                    },
-                    768: {
+                    962: {
                         items: 2
                     },
-                    992: {
+                    1366: {
                         items: 3
                     },
                     1920: {
@@ -639,6 +730,17 @@ function sbwc_jobs_slider_shortcode($atts)
             $(window).resize(function() {
                 console.log($(window).width());
             });
+
+            // append hover images to nav buttons
+            $('.owl-prev').append('<img class="arrow-left-hover" src="<?php echo plugin_dir_url(__FILE__) . 'img/nav.hover.left.png' ?>" alt="hexagon nav image left hover">');
+            $('.owl-next').append('<img class="arrow-right-hover" src="<?php echo plugin_dir_url(__FILE__) . 'img/nav.hover.right.png' ?>" alt="hexagon nav image right hover">');
+
+            // append normal images to nav buttons
+            $('.owl-prev').append('<img class="arrow-left" src="<?php echo plugin_dir_url(__FILE__) . 'img/nav.normal.left.png' ?>" alt="hexagon nav image left">');
+            $('.owl-next').append('<img class="arrow-right" src="<?php echo plugin_dir_url(__FILE__) . 'img/nav.normal.right.png' ?>" alt="hexagon nav image right">');
+
+
+
 
         });
     </script>
