@@ -198,15 +198,20 @@ function sbwc_jobs_slider_shortcode($atts)
     // echo '<pre style="color: #666">';
     // print_r($valid_jobs);
     // echo '</pre>';
+    // echo '<pre>';
+    // print_r($_SERVER);
+    // echo '</pre>';
 
     // Determine the number of job slides per slide page based on the device
-    $slidesPerPage = 4; // Default for desktop
-    $userAgent = $_SERVER['HTTP_USER_AGENT'];
-    if (strpos($userAgent, 'Mobile') !== false) {
-        $slidesPerPage = 1; // For mobile
-    } elseif (strpos($userAgent, 'Tablet') !== false) {
-        $slidesPerPage = 3; // For tablet
-    }
+    // $slidesPerPage = 4; // Default for desktop
+    // $userAgent = $_SERVER['HTTP_USER_AGENT'];
+    // if (strpos($userAgent, 'Mobile') !== false) {
+    //     $slidesPerPage = 1; // For mobile
+    // } elseif (strpos($userAgent, 'Tablet') !== false) {
+    //     $slidesPerPage = 3; // For tablet
+    // } // for width 1600px and below, 3 slides per page
+
+
 
     // Setup job description text
     // If description text is less than 300 chars, text remains as is
@@ -240,8 +245,9 @@ function sbwc_jobs_slider_shortcode($atts)
                 <div class="hexagon-content">
                     <img class="hexagon-slide-img-hover" src="<?php echo plugin_dir_url(__FILE__) . 'img/slide.hover.png' ?>" alt="hexagon slide hover image">
                     <img class="hexagon-slide-img" src="<?php echo plugin_dir_url(__FILE__) . 'img/slide.normal.png' ?>" alt="hexagon slide image">
-                    <h2 class="title"><?php echo substr($job['title'], 0, 12); ?>...</h2>
-                    <p class="description"><?php echo $job['description']  ?></p>
+                    <h2 class="title"><?php echo $job['title']; ?></h2>
+                    <!-- <h2 class="title"><?php echo substr($job['title'], 0, 12); ?>...</h2>
+                    <p class="description"><?php echo $job['description']  ?></p> -->
                     <a type="button" class="url" href="<?php echo $job['url']; ?>" title="click to view" target="_blank" rel="nofollow">
                         Read more
                         <img class="hexagon-rm-image" src="<?php echo plugin_dir_url(__FILE__) . 'img/readmore.arrow.png' ?>" alt="hexagon read more image">
@@ -256,6 +262,12 @@ function sbwc_jobs_slider_shortcode($atts)
         .elementor-element.elementor-element-bf1d245.e-con-full.e-flex.e-con.e-parent {
             --padding-inline-start: 88px;
             --padding-inline-end: 88px;
+            height: 1154px;
+        }
+
+        .elementor-element.elementor-element-2c060b98.e-con-full.panel.e-flex.e-con.e-parent {
+            --padding-inline-start: 44px;
+            --padding-inline-end: 44px;
             height: 1154px;
         }
 
@@ -557,7 +569,7 @@ function sbwc_jobs_slider_shortcode($atts)
         /* 414 */
         @media screen and (max-width: 414px) {
             .owl-stage-outer {
-                left: -85px;
+                left: -81px;
             }
 
             .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
@@ -566,7 +578,8 @@ function sbwc_jobs_slider_shortcode($atts)
 
             div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p,
             .elementor-element.elementor-element-fe6fe2c.elementor-widget.elementor-widget-text-editor>div>p,
-            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>p {
+            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>p,
+            .elementor-element.elementor-element-7a40d6a7.elementor-widget.elementor-widget-text-editor>div>p {
                 width: 230px;
                 text-align: left !important;
                 line-height: 23.6px !important;
@@ -581,7 +594,8 @@ function sbwc_jobs_slider_shortcode($atts)
 
             div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>h2,
             .elementor-element.elementor-element-1af1894.elementor-widget.elementor-widget-text-editor>div>h2,
-            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>h2 {
+            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>h2,
+            .elementor-element.elementor-element-6696138d.elementor-widget.elementor-widget-text-editor>div>h2 {
                 font-size: 32px !important;
                 line-height: 43.5px !important;
                 text-align: left !important;
@@ -598,9 +612,12 @@ function sbwc_jobs_slider_shortcode($atts)
         /* 393 */
         @media screen and (max-width: 393px) {
 
-            .owl-stage-outer,
             .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
                 left: -69px;
+            }
+
+            .elementor-element.elementor-element-38e06e6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
+                left: -138px;
             }
 
             .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent {
@@ -657,8 +674,12 @@ function sbwc_jobs_slider_shortcode($atts)
                 margin-top: 95px;
             }
 
-            .elementor-element.elementor-element-21d09fe.elementor-align-center.elementor-widget.elementor-widget-button {
-                padding-top: 95px;
+            .elementor-element.elementor-element-2a087c9e.elementor-align-center.elementor-widget.elementor-widget-button {
+                padding-top: 0;
+            }
+
+            .elementor-4933 .elementor-element.elementor-element-2a087c9e>.elementor-widget-container {
+                padding-top: 30px;
             }
 
         }
@@ -689,35 +710,35 @@ function sbwc_jobs_slider_shortcode($atts)
         }
     </style>
 
-    <script>
+    <script id="jobs-slider-js">
         jQuery(document).ready(function($) {
+
+            // get current screen width
+            var screenWidth = $(window).width();
+
+            // setup slides per page
+            if (screenWidth <= 414) {
+                var slidesPerPage = 1;
+            } else if (screenWidth >= 768) {
+                var slidesPerPage = 2;
+            } else if (screenWidth >= 1366) {
+                var slidesPerPage = 3;
+            } else if (screenWidth >= 1920) {
+                var slidesPerPage = 4;
+            } else if (screenWidth >= 2560) {
+                var slidesPerPage = 5;
+            }
+
             $(".owl-carousel").owlCarousel({
-                items: <?php echo $slidesPerPage; ?>,
+                items: slidesPerPage,
                 loop: true,
                 center: false,
                 margin: 30,
-                // stagePadding: 50,
                 nav: true,
                 navText: ["", ""],
                 dots: false,
                 autoWidth: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    962: {
-                        items: 2
-                    },
-                    1366: {
-                        items: 3
-                    },
-                    1920: {
-                        items: 4
-                    },
-                    2560: {
-                        items: 5
-                    }
-                }
+             
             });
 
             // hexagon on click find a element and open the link in a new tab
@@ -739,7 +760,34 @@ function sbwc_jobs_slider_shortcode($atts)
             $('.owl-prev').append('<img class="arrow-left" src="<?php echo plugin_dir_url(__FILE__) . 'img/nav.normal.left.png' ?>" alt="hexagon nav image left">');
             $('.owl-next').append('<img class="arrow-right" src="<?php echo plugin_dir_url(__FILE__) . 'img/nav.normal.right.png' ?>" alt="hexagon nav image right">');
 
+            // Hide owl navigation if job count is equal to owl item count for a given screen width
+            var jobCount = '<?php echo count($valid_jobs); ?>';
 
+            console.log('job count: ' + jobCount);
+            console.log('owl item count: ' + slidesPerPage);
+
+            // debug
+            // jobCount = 2;
+
+            if (jobCount == slidesPerPage) {
+                setTimeout(() => {
+                    $('.owl-nav').hide();
+                }, 500);
+            }
+
+            // calc absolute position from top of .hexagon for child element .title, using .hexagon height and .title height
+
+            $('.hexagon').each(function (index, element) {
+                // element == this
+                var hexagonHeight = $(this).height();
+                var titleHeight = $(this).find('.title').height();
+                var titleTop = (hexagonHeight - titleHeight) / 2.2;
+                $(this).find('.title').css('top', titleTop);
+
+                console.log('hexagon height: ' + hexagonHeight);
+                console.log('title height: ' + titleHeight);
+                console.log('title top: ' + titleTop);
+            });
 
 
         });
