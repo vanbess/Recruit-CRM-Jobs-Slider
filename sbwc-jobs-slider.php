@@ -568,8 +568,33 @@ function sbwc_jobs_slider_shortcode($atts)
 
         /* 414 */
         @media screen and (max-width: 414px) {
+
+            .owl-carousel .owl-item img {
+                display: block;
+                width: 100%;
+            }
+
+            .hexagon h2 {
+                font-size: 26px;
+                line-height: 146%;
+                left: calc((328px - 300px)/2);
+            }
+
+            .hexagon a {
+                top: 268px;
+                left: calc((328px - 210px)/2);
+            }
+
+            img.hexagon-slide-img,
+            img.hexagon-slide-img-hover,
+            .hexagon {
+                width: 328px;
+                height: calc(328px * 1.116);
+            }
+
             .owl-stage-outer {
-                left: -81px;
+                left: -42px;
+                width: 350px;
             }
 
             .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
@@ -580,16 +605,19 @@ function sbwc_jobs_slider_shortcode($atts)
             .elementor-element.elementor-element-fe6fe2c.elementor-widget.elementor-widget-text-editor>div>p,
             .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>p,
             .elementor-element.elementor-element-7a40d6a7.elementor-widget.elementor-widget-text-editor>div>p {
-                width: 230px;
+                width: 328px;
                 text-align: left !important;
                 line-height: 23.6px !important;
             }
 
             .elementor-element.elementor-element-bf1d245.e-con-full.e-flex.e-con.e-parent,
             .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent,
-            .elementor-element.elementor-element-4c8da6b.e-con-full.e-flex.e-con.e-parent {
-                --padding-inline-start: 15px;
-                --padding-inline-end: 15px;
+            .elementor-element.elementor-element-4c8da6b.e-con-full.e-flex.e-con.e-parent,
+            .elementor-element.elementor-element-2c060b98.e-con-full.panel.e-flex.e-con.e-parent {
+                --padding-inline-start: 44px;
+                --padding-inline-end: 44px;
+                padding-block-start: 0px;
+                padding-block-end: 0px;
             }
 
             div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>h2,
@@ -607,81 +635,37 @@ function sbwc_jobs_slider_shortcode($atts)
                 padding: 0;
                 margin-bottom: 36px;
             }
+
+            .elementor-element.elementor-element-6696138d.elementor-widget.elementor-widget-text-editor h2 {
+                padding-top: 83px;
+            }
+
+            .elementor-element.elementor-element-2a087c9e.elementor-align-center.elementor-widget.elementor-widget-button {
+                margin-bottom: 95px;
+            }
         }
 
         /* 393 */
         @media screen and (max-width: 393px) {
-
-            .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
-                left: -69px;
+            .owl-stage-outer {
+                left: -40px;
             }
 
-            .elementor-element.elementor-element-38e06e6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
-                left: -138px;
-            }
-
-            .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent {
-                height: 1135px;
-            }
-
-            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p {
-                width: 328px;
-            }
-
-            .elementor-21 .elementor-element.elementor-element-c6627f7 {
-                --padding-block-start: 83px;
-            }
-
-            .hexagon {
-                width: 328px;
-                height: calc(328px * 1.116);
-                left: 84px;
-            }
-
-            img.hexagon-slide-img,
-            img.hexagon-slide-img-hover {
-                width: 328px;
-                height: calc(328px * 1.116);
-            }
-
-            .hexagon h2 {
-                font-size: 26px;
-                top: 84px;
-                left: calc((328px - 300px)/2);
-                line-height: 38.35px;
-            }
-
-            .hexagon p {
-                font-size: 14px;
-                top: 134px;
-                width: 269px;
-                left: calc((328px - 269px)/2);
-                line-height: 20.65px;
-            }
-
-            .hexagon a {
-                top: 271px;
-                left: calc((328px - 210px)/2);
-            }
-
-            img.hexagon-rm-image {
-                width: 22.35px !important;
-                left: calc((210px - 22.35px)/2);
-                top: 23px;
+            .elementor-element.elementor-element-bf1d245.e-con-full.e-flex.e-con.e-parent,
+            .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent,
+            .elementor-element.elementor-element-4c8da6b.e-con-full.e-flex.e-con.e-parent,
+            .elementor-element.elementor-element-2c060b98.e-con-full.panel.e-flex.e-con.e-parent {
+                --padding-inline-start: 31px;
+                --padding-inline-end: 31px;
             }
 
             .owl-nav {
-                margin-top: 95px;
+                right: -4px;
             }
 
             .elementor-element.elementor-element-2a087c9e.elementor-align-center.elementor-widget.elementor-widget-button {
-                padding-top: 0;
+                left: 5px;
             }
-
-            .elementor-4933 .elementor-element.elementor-element-2a087c9e>.elementor-widget-container {
-                padding-top: 30px;
-            }
-
         }
 
         /* 390 */
@@ -692,7 +676,7 @@ function sbwc_jobs_slider_shortcode($atts)
 
             .owl-stage-outer,
             .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
-                left: -83px;
+                left: -56px;
             }
         }
 
@@ -701,6 +685,13 @@ function sbwc_jobs_slider_shortcode($atts)
             .elementor-element.elementor-element-c6627f7.e-con-full.panel.e-flex.e-con.e-parent {
                 --padding-inline-start: 15px;
                 --padding-inline-end: 15px;
+            }
+
+            div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p,
+            .elementor-element.elementor-element-fe6fe2c.elementor-widget.elementor-widget-text-editor>div>p,
+            .elementor-element.elementor-element-09b12f3.elementor-widget.elementor-widget-text-editor>div>p,
+            .elementor-element.elementor-element-7a40d6a7.elementor-widget.elementor-widget-text-editor>div>p {
+                width: 266px;
             }
 
             .owl-stage-outer,
@@ -738,7 +729,7 @@ function sbwc_jobs_slider_shortcode($atts)
                 navText: ["", ""],
                 dots: false,
                 autoWidth: true,
-             
+
             });
 
             // hexagon on click find a element and open the link in a new tab
@@ -777,7 +768,7 @@ function sbwc_jobs_slider_shortcode($atts)
 
             // calc absolute position from top of .hexagon for child element .title, using .hexagon height and .title height
 
-            $('.hexagon').each(function (index, element) {
+            $('.hexagon').each(function(index, element) {
                 // element == this
                 var hexagonHeight = $(this).height();
                 var titleHeight = $(this).find('.title').height();
