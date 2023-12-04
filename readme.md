@@ -9,3 +9,5 @@ Fetches and renders jobs from the Recruit CRM API.
 Requires a Recruit CRM API key to work.
 
 Setting page is located under Settings > Recruit CRM Job Slider.
+
+Built mainly for use with Elementor, but can be adapted to work with any page builder or theme.
