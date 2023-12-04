@@ -598,7 +598,11 @@ function sbwc_jobs_slider_shortcode($atts)
             }
 
             .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
-                left: -12px;
+                left: -3px;
+            }
+
+            .elementor-element.elementor-element-37bb18a.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
+                left: -2px;
             }
 
             div.elementor-element.elementor-element-456f1b9.elementor-widget.elementor-widget-text-editor>div>p,
@@ -643,6 +647,10 @@ function sbwc_jobs_slider_shortcode($atts)
             .elementor-element.elementor-element-2a087c9e.elementor-align-center.elementor-widget.elementor-widget-button {
                 margin-bottom: 95px;
             }
+
+            .elementor-element.elementor-element-bf1d245.e-con-full.e-flex.e-con.e-parent {
+                height: 1203px;
+            }
         }
 
         /* 393 */
@@ -659,10 +667,6 @@ function sbwc_jobs_slider_shortcode($atts)
                 --padding-inline-end: 31px;
             }
 
-            .owl-nav {
-                right: -4px;
-            }
-
             .elementor-element.elementor-element-2a087c9e.elementor-align-center.elementor-widget.elementor-widget-button {
                 left: 5px;
             }
@@ -675,9 +679,11 @@ function sbwc_jobs_slider_shortcode($atts)
         @media screen and (max-width: 360px) {
 
             .owl-stage-outer,
-            .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
-                left: -56px;
+            .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer,
+            .elementor-element.elementor-element-37bb18a.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
+                left: -17px;
             }
+
         }
 
         /* 328 */
@@ -694,9 +700,9 @@ function sbwc_jobs_slider_shortcode($atts)
                 width: 266px;
             }
 
-            .owl-stage-outer,
+            .elementor-element.elementor-element-37bb18a.elementor-widget.elementor-widget-shortcode .owl-stage-outer,
             .elementor-element.elementor-element-bea61a6.elementor-widget.elementor-widget-shortcode .owl-stage-outer {
-                left: -100px;
+                left: -31px;
             }
         }
     </style>
